@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Python下载器</title>
+    <base href="/">
+  <link rel="stylesheet" href="{%static 'layui/css/layui.css' %}"/>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">Henri下载器</div>
+    <!-- 头部区域（可配合layui 已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href=""></a></li>
+      <li class="layui-nav-item"><a href=""></a></li>
+      <li class="layui-nav-item"><a href=""></a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;"></a>
+        <dl class="layui-nav-child">
+          <dd><a href="">menu 11</a></dd>
+          <dd><a href="">menu 22</a></dd>
+          <dd><a href="">menu 33</a></dd>
+        </dl>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
+          {{ request.session.user_name }}
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">set 1</a></dd>
+          <dd><a href="">set 2</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="/logout/">Sign out</a></li>
+    </ul>
+  </div>
+
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">下载</a>
+          <dl class="layui-nav-child">
+              <dd><a href="/topicsearch">图片下载</a></dd>
+            <dd><a href="/tomusicsearch">音乐下载</a></dd>
+            <dd><a href="/tovideosearch">视频下载</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/picshow">已下载的图片</a></dd>
+            <dd><a href="/musicshow">已下载的音乐</a></dd>
+            <dd><a href="/videoshow">已下载的视频</a></dd>
+          </dl>
+        </li>
+          <li class="layui-nav-item">
+          <a href="javascript:;">离线下载</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/todownloadurl">下载</a></dd>
+          </dl>
+        </li>
+          </li>
+          <li class="layui-nav-item">
+          <a href="javascript:;">上传</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/toupload">上传文件</a></dd>
+          </dl>
+        </li>
+		<li class="layui-nav-item">
+          <a href="javascript:;">交流</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/tocomments">用户交流</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="javascript:;"></a></li>
+        <li class="layui-nav-item"><a href=""></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="layui-body" style="margin-top: 20px">
+    <!-- 内容主体区域 -->
+      <span class="layui-breadcrumb" style="margin-top: 20px;margin-left: 20px">
+            <a href="">首页</a>
+      </span>
+      <div class="layui-fluid" style="margin-top: 20px">
+			<blockquote class="layui-elem-quote" style="font-size: large">欢迎回来!：{{ request.session.user_name }}
+				&nbsp;&nbsp;&nbsp;&nbsp;现在时间：<span class="x-red" id="date1"></span>
+			</blockquote>
+		</div>
+        <fieldset class="layui-elem-field">
+            <legend>系统通知</legend>
+            <div class="layui-field-box">
+                <table class="layui-table" lay-skin="line">
+                    <tbody>
+                        <tr>
+                            <td >
+                                <a class="x-a" href="/" target="_blank" style="color: #FF5722">新版Python下载器上线了！</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                <a class="x-a" href="/" target="_blank" style="color: #FF5722">交流qq:(936042035)</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+        <fieldset class="layui-elem-field">
+            <legend>开发信息</legend>
+            <div class="layui-field-box">
+                <table class="layui-table" lay-skin="line">
+                    <tbody>
+                        <tr>
+                            <th>版权所有</th>
+                            <td>李顺昊
+                        </tr>
+                        <tr>
+                            <th>开发者</th>
+                            <td>Mr.Xx(936042035@qq.com)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+  </div>
+
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    底部固定区域
+  </div>
+</div>
+
+<script src="{%static 'layui/layui.js' %}"></script>S
+<script>
+//JavaScript代码区域
+layui.use('element', function(){
+  var element = layui.element;
+
+});
+layui.use(['form', 'layedit', 'laydate'], function() {
+        var form = layui.form
+            , layer = layui.layer
+            , laydate = layui.laydate;
+        laydate.render({
+            elem: '#date1', //指定元素
+            type:'datetime', // 可选择：年、月、日、时、分、秒
+            format: 'yyyy-MM-dd HH:mm:ss', //指定时间格式
+            value: new Date(), // 指定值
+        });
+})
+</script>
+</body>
+</html>
+          

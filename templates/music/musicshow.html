@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Python下载器</title>
+    <base href="/">
+    <link rel="stylesheet" href="{% static 'layui/css/layui.css' %}"/>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">Henri下载器</div>
+        <!-- 头部区域（可配合layui 已有的水平导航） -->
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg"
+                         class="layui-nav-img">
+                    {{ request.session.user_name }}
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">set 1</a></dd>
+                    <dd><a href="">set 2</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="/logout/">Sign out</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">下载</a>
+          <dl class="layui-nav-child">
+              <dd><a href="/topicsearch">图片下载</a></dd>
+            <dd><a href="/tomusicsearch">音乐下载</a></dd>
+            <dd><a href="/tovideosearch">视频下载</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/picshow">已下载的图片</a></dd>
+            <dd><a href="/musicshow">已下载的音乐</a></dd>
+            <dd><a href="/videoshow">已下载的视频</a></dd>
+          </dl>
+        </li>
+          <li class="layui-nav-item">
+          <a href="javascript:;">离线下载</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/todownloadurl">下载</a></dd>
+          </dl>
+        </li>
+          </li>
+          <li class="layui-nav-item">
+          <a href="javascript:;">上传</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/toupload">上传文件</a></dd>
+          </dl>
+        </li>
+          </li>
+          <li class="layui-nav-item">
+          <a href="javascript:;">交流</a>
+          <dl class="layui-nav-child">
+            <dd><a href="/tocomments">用户交流</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="javascript:;"></a></li>
+        <li class="layui-nav-item"><a href=""></a></li>
+      </ul>
+        </div>
+    </div>
+
+    <div class="layui-body" style="margin-top: 20px">
+        <!-- 内容主体区域 -->
+        <span class="layui-breadcrumb" style="margin-top: 20px;margin-left: 20px">
+            <a href="/index">首页</a>
+              <a href="/index">管理</a>
+              <a href="/index">已下载的音乐</a>
+      </span>
+        <fieldset class="layui-elem-field" style="margin-top: 50px">
+            <legend>查看并搜索库中的音乐</legend>
+            <div class="layui-field-box">
+                <table class="layui-table" lay-skin="line">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a class="x-a" href="/" target="_blank" style="color: #FF5722">默认展示库中全部的音乐</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a class="x-a" href="/" target="_blank" style="color: #FF5722">可以搜索出库中的的音乐</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+        <form class="layui-form" action="/musicsearch/" method="post" style="margin-top: 50px">
+            {% csrf_token %}
+            <div class="layui-form-item">
+                <label class="layui-form-label">搜索</label>
+                <div class="layui-input-block">
+                    <input type="text" name="music_name" required  lay-verify="required" placeholder="请输入查找关键字"
+                           autocomplete="off" class="layui-input" id = 'name' style="width: 200px">
+                </div>
+            </div>
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo" id="search">搜索</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+              </div>
+      </form>
+        <div class="all-music-table">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>歌名</th>
+                    <th>歌手</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for music in musiclist %}
+                    <tr>
+                        <td>{{ music.id }}</td>
+                    <td>{{ music.song_name }}</td>
+                    <td>{{ music.singer }}</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+    底部固定区域
+</div>
+</div>
+
+<script src="{% static 'layui/layui.js' %}"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+    //JavaScript代码区域
+
+</script>
+</body>
+</html>
+          
