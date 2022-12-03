@@ -1,4 +1,4 @@
-# pythonDownloader
+# 自动Python下载器
 · 前端使用Layui，后端Django+python</br>
 · 数据库MySQL8.0</br>
 1. HTTP下载断点续传</br>
